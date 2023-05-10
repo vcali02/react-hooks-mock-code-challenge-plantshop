@@ -1,26 +1,23 @@
 import React, {useState} from "react";
 
 function PlantCard({plant}) {
-//sold out state
 const [soldOut, setSoldOut] = useState(true)
 
-//click event that UPDATES the state of soldout/instock to the OPPOSITE of the current state
-function handleClick(e){
+
+function handleClick(){
   setSoldOut(!soldOut)
 }
- 
+
 
 return (
     <li className="card">
       <img src={plant.image} alt={plant.name} />
       <h4>{plant.name}</h4>
       <p>Price: {plant.price}</p>
-      {/*the ternary is in {} the TRUTHY value is an ENTIRE button element and its contents, and the FALSEY value is its version of the same*/}
-      {/*HAAAADDDD to add an onClick event to EACH button so that it would toggle*/}
       {soldOut ? (
         <button className="primary" onClick={(e) => handleClick(e)}>In Stock</button>
       ) : (
-        <button onClick={(e) => handleClick(e)} >Out of Stock</button>
+        <button onClick={(e) => handleClick(e)}>Out of Stock</button>
       )}
     </li>
   );

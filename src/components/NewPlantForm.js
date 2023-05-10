@@ -24,10 +24,10 @@ function handleSubmit(e) {
   e.preventDefault()
   fetch(`http://localhost:6001/plants`, {
     method: 'POST',
+    body: JSON.stringify({...form}),
     headers: {
       "content-type" : "application/json"
-    },
-    body: JSON.stringify(form)
+    }
   })
   .then(res => res.json())
   .then(data => {

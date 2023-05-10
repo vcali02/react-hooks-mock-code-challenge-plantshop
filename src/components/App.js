@@ -6,7 +6,6 @@ import NewPlantForm from "./NewPlantForm";
 function App() {
 //fetch state for plants in db.json
 const [plants, setPlants] = useState([])
-//state for search
 const [search, setSearch] = useState("")
 
 
@@ -29,13 +28,11 @@ const addPlant= (plant) => {
 }
 
 
-//3. filtered list of plants
-const filteredPlants = [...plants].filter(el => {
-   //does el (plant) contain the string search? (must return true or false)
-  //1. convert both el.name and search to lowercase
-  //2. check if el.name contains search substring
+//4. filter
+const filterPlants = [...plants].filter((el) => {
   return el.name.toLowerCase().includes(search.toLowerCase())
 })
+
 
 
 
@@ -43,8 +40,7 @@ const filteredPlants = [...plants].filter(el => {
     <div className="app">
       <Header />
       {/*1. passing plant state to component*/}
-      {/*4. passing plant state to component AS FILTERED PLANTS*/}
-      <PlantPage plants={filteredPlants} addPlant={addPlant} setSearch={setSearch}/>
+      <PlantPage search={search} setSearch={setSearch} plants={filterPlants} addPlant={addPlant}/>
     </div>
   );
 }
